@@ -1,0 +1,27 @@
+Expliquer ce que font les 2 scripts (scraper, cleaner) et l’app :
+
+- Cleaner : 	- Liste tous les fichiers ayant l'extension ".csv" dans le dossier "data/scrapped/".
+
+		-Sélectionne le fichier CSV le plus récent (basé sur l'ordre alphabétique) parmi les fichiers trouvés.
+
+		-Effectue certaines opérations de nettoyage sur le DataFrame, notamment :
+		Supprime une colonne nommée "Unnamed: 0".
+		Renomme les colonnes pour avoir des noms spécifiques : "rang", "title_fr", "title_vo", "réalisateur(s)", "année", "pays".
+
+		-Enregistre le DataFrame nettoyé dans un nouveau fichier CSV, en utilisant le préfixe "cleaned_" suivi du nom du fichier d'origine, dans le dossier "data/cleaned/".
+
+		-Répète ces étapes de nettoyage et d'enregistrement toutes les 45 secondes.
+
+
+
+-Scraper :	-Charge le tableau de données (DataFrame) depuis une page Wikipedia spécifique (https://fr.wikipedia.org/wiki/Top_250_de_l%27Internet_Movie_Database) en utilisant pd.read_html(url)[0].
+		
+		-Entre dans une boucle infinie pour effectuer le nettoyage et l'enregistrement du DataFrame à intervalles réguliers.
+
+		-Dans la boucle, il récupère l'heure actuelle sous forme de chaîne de caractères au format ISO et crée un nom de fichier au format "top_250_imdb_YYYY-MM-DD_HH-MM-SS.csv".
+
+		-Il crée le dossier "data/scrapped" s'il n'existe pas déjà.
+
+		-Enregistre le DataFrame dans un nouveau fichier CSV avec le nom de fichier construit avant dans le dossier "data/scrapped".
+
+		-Attend 60 secondes avant de répéter le processus pour effectuer un nouveau nettoyage et enregistrement du DataFrame.
