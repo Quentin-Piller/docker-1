@@ -1,0 +1,16 @@
+Ces deux commandes utilisent Docker pour exécuter des contenneurs basés sur l'image "bash:latest" et effectuer des actions spécifiques dans ces conteneurs.
+
+La commande : 
+
+docker run -v $(pwd):/var/opt/project bash:latest \
+  bash -c "echo Bonjour > /var/opt/project/file.txt"
+
+exécute un conteneur basé sur l'image "bash:latest" et monte le répertoire dans le quel nous effectuons la commande, dans le répertoire /var/opt/project du conteneur. Ensuite la commande bash -c "echo Bonjour > /var/opt/project/file.txt" va être exécuter ) l'intérieur du conteneur.
+
+
+La commande :
+
+docker run -v $(pwd):/var/opt/project bash:latest \
+  bash -c "ls /var/opt/project"
+
+Celle-ci est similaire à la première mais va lister le contenu à l'intéreiru du répertoire var/opt/project du conteneur.
